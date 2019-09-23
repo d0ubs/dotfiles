@@ -1,0 +1,105 @@
+" Basic params
+set nocompatible
+filetype plugin on
+filetype plugin indent on
+syntax on
+set showmatch   " Show matching brackets.
+set ignorecase	" Do case insensitive matching
+set smartcase	" Do smart case matching i.e. ignore case if lower case
+set incsearch	" Incremental search
+set hlsearch
+set number
+set relativenumber
+set clipboard=unnamed
+:nnoremap <F10> :nohl<CR>
+" Have Vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" Buffer menu
+set wildcharm=<Tab> 
+set wildmode=full
+:nnoremap <F5> :buffers<CR>:buffer<Space>
+set hidden " Allow to change buffer w/o saving
+
+" Fuzzy search
+set path+=** " Recursive search
+set wildmenu " Show suggestions in status line 
+
+" Colors/Theme
+set background=dark
+colorscheme gruvbox
+set t_Co=256
+
+" Cursor style
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[6 q\<Esc>\\"
+    let &t_SR = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+else
+let &t_SI = "\<esc>[6 q"
+let &t_SR = "\<esc>[1 q"
+let &t_EI = "\<esc>[2 q"
+endif
+
+" Indentation style 
+set tabstop=8
+set shiftwidth=4
+set softtabstop=0
+set expandtab
+set smarttab
+
+" Status/buffer line and airline plugin
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail' " Streamlined names
+let g:airline#extensions#tabline#buffer_idx_mode = 1 " Show buffer number
+"let g:airline_theme='gruvbox'
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+set encoding=utf-8
+
+" Remaps
+:inoremap ( ()<Esc>i
+:inoremap [ []<Esc>i
+:inoremap { {}<Esc>i
+:inoremap " ""<Esc>i
+:inoremap ' ''<Esc>i
+
+" Compile stuff
+:nnoremap <F9> :make<CR>
+"autocmd Filetype c setlocal makeprg=gcc\ -o\ %<\ % 
+autocmd Filetype c setlocal makeprg=make\ &&\make\ clean
+autocmd Filetype tex setlocal makeprg=pdflatex\ -shell-escape\ %<\ % 
+
+" Skeleton files
+nnoremap ,c :-1read $HOME/.vim/skeletons/skel.c<CR>5j0i<Tab>
