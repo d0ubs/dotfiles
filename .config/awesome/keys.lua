@@ -83,7 +83,7 @@ keys.globalkeys = gears.table.join(
               {description = "invert screen colors", group = "launcher"}),
     awful.key({ modkey,           }, "o", function () awful.spawn("libreoffice") end,
               {description = "open libreoffice", group = "launcher"}),
-    awful.key({ modkey,           }, "d", function () awful.spawn("scrot") end,
+    awful.key({ modkey,           }, "s", function () awful.spawn("scrot") end,
               {description = "take screenshot", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
