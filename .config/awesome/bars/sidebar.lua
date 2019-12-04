@@ -4,6 +4,8 @@ local beautiful = require("beautiful")
 local menubar = require("menubar")
 local keys = require("keys")
 
+local padding_height = 448 -- To be adapted to vert. resolution. 448 for 1080
+
 local icon_path = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox_mod/icons/"
 
 local update_taglist = function (item, tag, index)
@@ -80,7 +82,7 @@ local volume_widget = require("noodle.volume_widget")
 -- Padding ----
 padding = wibox.widget {
     image = icon_path .. "padding.png",
-    forced_height = 448, -- To be adapted to vert. resolution. 448 for 1080
+    forced_height = padding_height,
     widget = wibox.widget.imagebox
 }
 
