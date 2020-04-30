@@ -3,34 +3,48 @@ set nocompatible
 filetype plugin on
 filetype plugin indent on
 syntax on
+set encoding=utf-8
+set t_Co=256
 set showmatch   " Show matching brackets.
-set ignorecase	" Do case insensitive matching
+set ignorecase	" Do case insensitive matching by default
 set smartcase	" Do smart case matching i.e. ignore case if lower case
 set incsearch	" Incremental search
 set hlsearch
+:nnoremap <F10> :nohl<CR> 
 set number
 set relativenumber
+set textwidth=80
 set clipboard=unnamed
-:nnoremap <F10> :nohl<CR>
+set lazyredraw
+autocmd BufNewFile,BufRead *.md,*.tex set spell spelllang=en,fr
+set path+=** " Recursive search
+set wildmenu " Show suggestions in status line 
+
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" Buffer menu
+autocmd BufWinEnter * silent loadview " Load folds
+
+" Indentation style 
+set tabstop=8
+set shiftwidth=4
+set softtabstop=0
+set expandtab   " Spaces instead of tabs
+set smarttab
+
+" Buffers/splits 
 set wildcharm=<Tab> 
-set wildmode=full
 :nnoremap <F5> :buffers<CR>:buffer<Space>
 set hidden " Allow to change buffer w/o saving
-
-" Fuzzy search
-set path+=** " Recursive search
-set wildmenu " Show suggestions in status line 
+set switchbuf=useopen "Switch to the window w/ open buffer instead of new one
+set splitright
+set splitbelow
 
 " Colors/Theme
 set background=dark
 colorscheme gruvbox
-set t_Co=256
 
 " Cursor style
 if exists('$TMUX')
@@ -43,14 +57,7 @@ let &t_SR = "\<esc>[1 q"
 let &t_EI = "\<esc>[2 q"
 endif
 
-" Indentation style 
-set tabstop=8
-set shiftwidth=4
-set softtabstop=0
-set expandtab
-set smarttab
-
-" Status/buffer line and airline plugin
+" Status line and airline plugin
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline
@@ -86,20 +93,25 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-set encoding=utf-8
+" User defined commands
+command! -nargs=1 Mgrep vimgrep "<args>" ~/memos/**/*.md
 
 " Remaps
 :inoremap ( ()<Esc>i
 :inoremap [ []<Esc>i
 :inoremap { {}<Esc>i
 :inoremap " ""<Esc>i
-:inoremap ' ''<Esc>i
+:nnoremap <F9> :make<CR>
 
 " Compile stuff
-:nnoremap <F9> :make<CR>
-"autocmd Filetype c setlocal makeprg=gcc\ -o\ %<\ % 
-autocmd Filetype c setlocal makeprg=make\ &&\make\ clean
+autocmd Filetype c setlocal makeprg=gcc\ -o\ %<\ % 
+autocmd Filetype md setlocal makeprg=pandoc\ %\ -o\ %<.pdf
+"autocmd filetype md setlocal makeprg=exec '!pandoc '.shellescape('%').' -o '.shellescape('%:r').pdf'
+"autocmd Filetype c setlocal makeprg=make\ &&\make\ clean
 autocmd Filetype tex setlocal makeprg=pdflatex\ -shell-escape\ %<\ % 
+autocmd Filetype java setlocal makeprg=javac\ *.java 
 
 " Skeleton files
 nnoremap ,c :-1read $HOME/.vim/skeletons/skel.c<CR>5j0i<Tab>
+nnoremap ,s :-1read $HOME/.vim/skeletons/specs.java<CR>jA<Space>
+
