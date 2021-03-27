@@ -1,0 +1,44 @@
+
+# Index Key Bindings ---------------------------------
+bind index g noop
+bind index gg first-entry
+bind index G last-entry
+bind index,pager \CP sidebar-prev       # Ctrl-Shift-P - Previous Mailbox
+bind index,pager \CN sidebar-next       # Ctrl-Shift-N - Next Mailbox
+bind index,pager \CO sidebar-open       # Ctrl-Shift-O - Open Highlighted Mailbox
+
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+bind editor <space> noop
+
+macro index,pager y "<save-message>=gmail/All Mail<enter><enter>" "Archive"
+macro index,pager d "<save-message>=gmail/Trash<enter><enter>" "Trash"
+
+# Same key bindings to change folers for diff. mailboxes
+folder-hook gmail macro index gi "'<change-folder>=gmail/INBOX<enter>' 'Go to gmail Inbox'"
+folder-hook gmail macro index gs "'<change-folder>=gmail/Sent<enter>' 'Go to Sent messages'"
+folder-hook gmail macro index gd "'<change-folder>=gmail/Drafts<enter>' 'Go to Drafts'"
+folder-hook gmail macro index gt "'<change-folder>=gmail/Trash<enter>' 'Go to Trash'"
+folder-hook gmail macro index ga "'<change-folder>=gmail/Allmail<enter>' 'Go to All Mail'"
+
+folder-hook hotmail macro index gi "'<change-folder>=hotmail/Inbox<enter>' 'Go to hotmail inbox'"
+folder-hook hotmail macro index gs "'<change-folder>=hotmail/Sent<enter>' 'Go to sent messages'"
+folder-hook hotmail macro index gd "'<change-folder>=hotmail/Drafts<enter>' 'Go to drafts'"
+folder-hook hotmail macro index gt "'<change-folder>=hotmail/Deleted<enter>' 'Go to Trash'"
+
+folder-hook unamur macro index gi "'<change-folder>=unamur/INBOX<enter>' 'Go to unamur inbox'"
+folder-hook unamur macro index gs "'<change-folder>=unamur/Sent<enter>' 'Go to sent messages'"
+folder-hook unamur macro index gd "'<change-folder>=unamur/Drafts<enter>' 'Go to drafts'"
+folder-hook unamur macro index gt "'<change-folder>=unamur/Trash<enter>' 'Go to Trash'"
+
+# Pager Key Bindings ---------------------------------
+bind pager g noop
+bind pager R  group-reply
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G bottom
+
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
