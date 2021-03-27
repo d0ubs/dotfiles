@@ -3,13 +3,13 @@
 + **OS**: Archlinux
 + **WM**: AwesomeWM
 + **Terminal**: urxvt
-+ **File Manager**: Ranger
++ **File Manager**: lf
 + **Editor**: Vim
-+ **Browser**: Firefox
++ **Browser**: Brave
 
 ## Features
 + Active tag is colored differently
-+ Inactive tags with clients open display a dot below the tag icon
++ Inactive tags with clients open display a similar but darker color than active tags 
 + Tooltip on the wifi icon shows the ssid
 + Tooltip on the battery icon shows the time remaining on the battery or to complete charge
 + Tooltip on the time shows the current date
@@ -31,18 +31,17 @@
 ## AwesomeWM configuration: File structure
 Following github/elenapan structure, I have split my `rc.lua` into multiple files for organization purposes.
 
-+ The `noodle` directory contains widgets that usually take up more than 50 lines of code.
++ The `widgets` directory contains the widgets
 
-+ The `evil` directory contains daemons (processes that run in the background) which emit system info.
++ The `evil` directory contains daemons (processes that run in the background) which emit signals
+  that are used in widgets.
 
    They provide an easy way of writing widgets that rely on external information. All you need to do is subscribe to the signal a daemon provides.
    No need to remember which shell command gives you the necessary info or bother about killing orphan processes. Evil takes care of everything.
 
-+ In `themes` you can find a directory for each available theme.
++ `themes` contains theme configuration, pictures and icons.
 
-   Such a directory should include at least a `theme.lua` and optionally icons, wallpaper, and whatever asset you need that is theme-specific.
-
-+ In `bars` you can find a `.lua` file for each available bar or bar group.
++ `bars` contain the sidebar lua code 
 
 ## Basic keybinds
 
@@ -61,9 +60,6 @@ I use `super` AKA Windows key as my main modifier.
 
 #### Mouse on desktop
 + `right click` - App drawer
-
-#### Mouse on titlebars
-+ `left click (drag)` - Move
 
 ## Tips / Notes
 + The vertical bar features a transparent picture for padding. Its forced height is configured for Full HD and should be adapted if the vertical resolution of the screen is different.
