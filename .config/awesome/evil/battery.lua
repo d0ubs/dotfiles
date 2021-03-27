@@ -40,7 +40,7 @@ awful.widget.watch(battery_time_script, update_interval, function(widget, stdout
 end)
 
 local emit_charger_info = function()
-    awful.spawn.easy_async_with_shell("cat /sys/class/power_supply/*/online", function (out)
+    awful.spawn.easy_async_with_shell("cat /sys/class/power_supply/*/online | awk 'NR==1{print $1}'", function (out)
         status = tonumber(out)
         if status == 1 then
             awesome.emit_signal("evil::charger", true)
@@ -54,13 +54,11 @@ end
 emit_charger_info(percentage)
 
 -- Kill old acpi_listen process
---awful.spawn.easy_async_with_shell("ps x | grep \"acpi_listen\" | grep -v grep | awk '{print $1}' | xargs kill", function ()
-awful.spawn.easy_async_with_shell("ps x | grep \"acpi_listen\" | awk '{print $1}' | xargs kill", function ()
+awful.spawn.easy_async_with_shell("ps x | grep \"acpi_listen\" | grep -v grep | awk '{print $1}' | xargs kill", function ()
+--awful.spawn.easy_async_with_shell("ps x | grep \"acpi_listen\" | awk '{print $1}' | xargs kill", function ()
     -- Update charger status with each line printed
-    awful.spawn.with_line_callback(charger_script, {
-        stdout = function(_)
-            emit_charger_info()
-        end
+awful.spawn.with_line_callback(charger_script, {
+        stdout = function(_) emit_charger_info() end
     })
 
 end)

@@ -6,11 +6,13 @@ require("awful.autofocus")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local hotkeys_popup = require("awful.hotkeys_popup").widget
-local xrandr = require("xrandr")
 local keys = require("keys")
+-- Layout lib
+--local lain = require("lain")
 
 require("evil")
+
+theme_path = "~/.config/awesome/themes/gruvbox_mod/"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -39,7 +41,7 @@ do
 end
 -- }}}
 
-beautiful.init("~/.config/awesome/themes/gruvbox_mod/theme.lua")
+beautiful.init(theme_path .. "theme.lua")
 
 for s = 1, screen.count() do
 	gears.wallpaper.maximized(beautiful.wallpaper, s, true)
@@ -71,6 +73,7 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
+--    lain.layout.centerwork,
 --    awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -111,71 +114,7 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
  
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = keys.clientkeys,
-                     buttons = keys.clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-				     size_hints_honor = true 
-     }
-    },
-
-
-{ rule = { class = "mpv" },
-   properties = { screen = function() return screen.count() >= 2 and screen[2] or screen[1] end, tag = "media", switchtotag = true }
-    },
-
-{ rule = { instance = "mkvtoolnix-gui" },
-   properties = { tag  = "media", switchtotag = true } 
-    },
-
-
-    -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-        },
-        class = {
-          "Arandr",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Wpa_gui",
-          "pinentry",
-          "veromix",
-          "xtightvncviewer"},
-
-        name = {
-          "Event Tester",  -- xev.
-        },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
-
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
-    },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-     { rule = { class = "firefox" },
-       properties = { screen = 1, tag = "www" } },
-     { rule = { class = "Zathura" },
-       properties = { screen = 1, tag = "pdf" , switchtotag = true } },
-}
--- }}}
+require("rules")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
