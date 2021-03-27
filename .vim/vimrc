@@ -1,7 +1,6 @@
 " Basic params
 set nocompatible
 filetype plugin on
-filetype plugin indent on
 syntax on
 set encoding=utf-8
 set t_Co=256
@@ -13,26 +12,34 @@ set hlsearch
 :nnoremap <F10> :nohl<CR> 
 set number
 set relativenumber
-set textwidth=80
+set textwidth=100
 set clipboard=unnamed
 set lazyredraw
 autocmd BufNewFile,BufRead *.md,*.tex set spell spelllang=en,fr
 set path+=** " Recursive search
 set wildmenu " Show suggestions in status line 
+set history=1000
+set timeoutlen=1000
+set ttimeoutlen=50
+set autochdir
+
+" Netrw
+let g:netrw_banner = 0   " No banner 
+let g:netrw_browse_split = 1  " Open files in vsplit
+let g:netrw_winsize = 25      " siize = 25% of page width
 
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-autocmd BufWinEnter * silent loadview " Load folds
+autocmd BufWinEnter *.* silent loadview " Load folds
 
 " Indentation style 
-set tabstop=8
+filetype plugin indent on
 set shiftwidth=4
-set softtabstop=0
-set expandtab   " Spaces instead of tabs
-set smarttab
+set softtabstop=4
+set expandtab  " Spaces instead of tabs
 
 " Buffers/splits 
 set wildcharm=<Tab> 
@@ -41,21 +48,16 @@ set hidden " Allow to change buffer w/o saving
 set switchbuf=useopen "Switch to the window w/ open buffer instead of new one
 set splitright
 set splitbelow
+set termwinsize=16x0
 
 " Colors/Theme
 set background=dark
 colorscheme gruvbox
 
 " Cursor style
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[6 q\<Esc>\\"
-    let &t_SR = "\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-else
 let &t_SI = "\<esc>[6 q"
 let &t_SR = "\<esc>[1 q"
 let &t_EI = "\<esc>[2 q"
-endif
 
 " Status line and airline plugin
 set laststatus=2 " Always display the statusline in all windows
@@ -65,6 +67,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail' " Streamlined names
 let g:airline#extensions#tabline#buffer_idx_mode = 1 " Show buffer number
 "let g:airline_theme='gruvbox'
@@ -72,10 +75,10 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 " unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
+let g:airline_left_sep = ''
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_sep = ''
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
@@ -85,10 +88,10 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
@@ -97,21 +100,16 @@ let g:airline_symbols.linenr = ''
 command! -nargs=1 Mgrep vimgrep "<args>" ~/memos/**/*.md
 
 " Remaps
-:inoremap ( ()<Esc>i
-:inoremap [ []<Esc>i
-:inoremap { {}<Esc>i
-:inoremap " ""<Esc>i
 :nnoremap <F9> :make<CR>
 
-" Compile stuff
-autocmd Filetype c setlocal makeprg=gcc\ -o\ %<\ % 
-autocmd Filetype md setlocal makeprg=pandoc\ %\ -o\ %<.pdf
-"autocmd filetype md setlocal makeprg=exec '!pandoc '.shellescape('%').' -o '.shellescape('%:r').pdf'
-"autocmd Filetype c setlocal makeprg=make\ &&\make\ clean
-autocmd Filetype tex setlocal makeprg=pdflatex\ -shell-escape\ %<\ % 
+" Compilation commands
+"autocmd Filetype c setlocal makeprg=gcc\ -o\ %<\ % 
+autocmd Filetype c setlocal makeprg=make\ &&\ make\ clean
+autocmd Filetype markdown setlocal makeprg=pandoc\ -o\ %<.pdf\ %
+autocmd Filetype tex setlocal makeprg=latexmk\ -pdf\ -shell-escape\ %<\ % 
 autocmd Filetype java setlocal makeprg=javac\ *.java 
 
 " Skeleton files
 nnoremap ,c :-1read $HOME/.vim/skeletons/skel.c<CR>5j0i<Tab>
 nnoremap ,s :-1read $HOME/.vim/skeletons/specs.java<CR>jA<Space>
-
+nnoremap ,t :-1read $HOME/.vim/skeletons/skel.tex<CR>11j<Space>
