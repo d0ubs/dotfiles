@@ -1,5 +1,5 @@
 ! General
-!urxvt*termName:  rxvt-256color
+!urxvt*termName:rxvt-unicode-256color
 urxvt*loginShell:         true
 urxvt*scrollBar:         false
 urxvt*secondaryScroll:    true
@@ -13,6 +13,10 @@ urxvt*urgentOnBell:       true
 URxvt.perl-ext-common:  default,keyboard-select
 URxvt.keysym.M-Escape:  perl:keyboard-select:activate
 URxvt.keysym.M-s:       perl:keyboard-select:search
+
+Xcursor.theme: cursor-theme
+Xcursor.size: 24
+
 !------------
 !True Transparency
 !------------
@@ -24,19 +28,22 @@ URxvt.keysym.M-s:       perl:keyboard-select:search
 
 ! Extensions
 urxvt*perl-lib:        /usr/lib/urxvt/perl/
-urxvt*perl-ext-common: default,matcher,searchable-scrollback
+urxvt*perl-ext-common: default,matcher,searchable-scrollback!,clipboard
 urxvt*urlLauncher:     /usr/bin/firefox
 urxvt*matcher.button:  1
 !  - catch ugly URLs
 !urxvt.cutchars:        ! Appearance
 
 !urxvt.font: !xft:Inconsolata\ for\ Powerline:size=14
- urxvt.font: xft:Hack:size=12:antialias=true:hinting=true
+ urxvt.font: xft:Hack:size=11:antialias=true:hinting=true
 !            xft:InconsolataDz\ for\ Powerline:size=14
 !            xft:DejavuSansMono:size=14:antialias=true:hinting=true
+!#  - pseudo transparency
+!urxvt*shading: 40   
+!urxvt*transparent:true
 
 ! Gruvbox colors
-! hard contrast: *background: #1d2021
+ hard contrast: *background: #1d2021
 *background: #282828
 ! soft contrast: *background: #32302f
 *foreground: #ebdbb2
@@ -64,7 +71,45 @@ urxvt*matcher.button:  1
 ! LightGrey + White
 *color7:  #a89984
 *color15: #ebdbb2
-!urxvt*cursorColor: #DCDCCC
-!#  - pseudo transparency
-urxvt*shading: 40   
-urxvt*transparent:true
+urxvt*cursorColor: #DCDCCC
+
+!rofi.fg: #ebdbb2
+!rofi.bg: #282828
+! -----------------------------------------------------------------------------
+! File: gruvbox-urxvt256.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 13 Dec 2013
+! -----------------------------------------------------------------------------
+
+URxvt.color24:  #076678
+URxvt.color66:  #427b58
+URxvt.color88:  #9d0006
+URxvt.color96:  #8f3f71
+URxvt.color100: #79740e
+URxvt.color108: #8ec07c
+URxvt.color109: #83a598
+URxvt.color130: #af3a03
+URxvt.color136: #b57614
+URxvt.color142: #b8bb26
+URxvt.color167: #fb4934
+URxvt.color175: #d3869b
+URxvt.color208: #fe8019
+URxvt.color214: #fabd2f
+URxvt.color223: #ebdbb2
+URxvt.color228: #f2e5bc
+URxvt.color229: #fbf1c7
+URxvt.color230: #f9f5d7
+URxvt.color234: #1d2021
+URxvt.color235: #282828
+URxvt.color236: #32302f
+URxvt.color237: #3c3836
+URxvt.color239: #504945
+URxvt.color241: #665c54
+URxvt.color243: #7c6f64
+URxvt.color244: #928374
+URxvt.color245: #928374
+URxvt.color246: #a89984
+URxvt.color248: #bdae93
+URxvt.color250: #d5c4a1
