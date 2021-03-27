@@ -73,5 +73,3 @@ awful.spawn.easy_async_with_shell("ps x | grep \"pactl subscribe\" | grep -v gre
     })
 
 end)
-
-

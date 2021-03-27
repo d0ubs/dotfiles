@@ -22,26 +22,26 @@ local xrdb = xresources.get_current_theme()
 theme.wd = "~/.config/awesome/themes/gruvbox_mod/"
 local taglist_icon_path = os.getenv("HOME") .. "/.config/awesome/themes/gruvbox_mod/taglist/"
 
-theme.font          = "Hacker 12"
+theme.font          = "Hacker 8.5"
 theme.hotkeys_font  = theme.font
 theme.hotkeys_description_font = theme.font
 
 --theme.bg_normal     = xrdb.color0 .. "aa" or "#282828" .. "aa"
-theme.bg_normal     = xrdb.color0 or "#282828"
+theme.bg_normal     = xrdb.color0 
 theme.bg_focus      = "#3c3836"
 theme.bg_urgent     = theme.bg_normal
 theme.bg_minimize   = theme.bg_focus
 theme.bg_systray    = theme.bg_normal
 theme.hotkeys_bg    = theme.bg_normal
 
-theme.fg_normal     = xrdb.color15 or "#ebdbb2"
+theme.fg_normal     = "#d1d1d1"
 theme.fg_focus      = theme.fg_normal
 theme.fg_urgent     = xrdb.color13 or"#d3869b"
 theme.fg_minimize   = theme.fg_normal
 theme.hotkeys_fg    = theme.fg_normal
 
 theme.useless_gap   = 5
-theme.border_width  = 1
+theme.border_width  = 0
 theme.border_normal = "#353535"
 theme.border_focus  = xrdb.color7 or "#a89984"
 theme.border_marked = xrdb.color1 or "#cc241d"
@@ -62,17 +62,17 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus = theme.bg_normal
 
 -- Icon taglist
-local ntags = 6 
+local ntags = 8 
 theme.taglist_icons_empty = {}
 theme.taglist_icons_occupied = {}
 theme.taglist_icons_focused = {}
 theme.taglist_icons_urgent = {}
 
 for i = 1, ntags do
-  theme.taglist_icons_empty[i] = taglist_icon_path .. tostring(i) .. "_empty.png"
-  theme.taglist_icons_occupied[i] = taglist_icon_path .. tostring(i) .. "_occupied.png"
-  theme.taglist_icons_focused[i] = taglist_icon_path .. tostring(i) .. "_focused.png"
-  theme.taglist_icons_urgent[i] = taglist_icon_path .. tostring(i) .. "_urgent.png"
+  theme.taglist_icons_empty[i] = taglist_icon_path .. tostring(i) .. "_empty.svg"
+  theme.taglist_icons_occupied[i] = taglist_icon_path .. tostring(i) .. "_occupied.svg"
+  theme.taglist_icons_focused[i] = taglist_icon_path .. tostring(i) .. "_focused.svg"
+  theme.taglist_icons_urgent[i] = taglist_icon_path .. tostring(i) .. "_urgent.svg"
 end
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]

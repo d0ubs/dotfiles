@@ -2,8 +2,11 @@ local awful = require("awful")
 local naughty = require("naughty")
 local gears = require("gears")
 local beautiful = require("beautiful")
+local xrandr = require("xrandr")
 
+local hotkeys_popup = require("awful.hotkeys_popup").widget
 local keys = {}
+--local brightness_widget = require("noodle.brightness-widget.brightness")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -14,16 +17,16 @@ modkey = "Mod4"
 
 -- {{{ Mouse bindings
 keys.desktopbuttons = gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
+    --awful.button({ }, 4, awful.tag.viewnext),
+    --awful.button({ }, 5, awful.tag.viewprev)
 )
 -- }}}
 
 -- {{{ Key bindings
 keys.globalkeys = gears.table.join(
-    --awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-    --          {description="show help", group="awesome"}),
+    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+              {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Up",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Down",  awful.tag.viewnext,
@@ -45,6 +48,21 @@ keys.globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
+    -- Sound, brightness, etc.
+    awful.key({}, "F1", function () awful.spawn("pactl set-sink-mute 0 toggle") end,
+              {description = "mute volume", group = "pulseaudio"}),
+    awful.key({}, "F2", function () awful.spawn("pactl -- set-sink-volume 0 -10%") end,
+              {description = "decrease volume", group = "pulseaudio"}),
+    awful.key({}, "F3", function () awful.spawn("pactl -- set-sink-volume 0 +10%") end,
+              {description = "increase volume", group = "pulseaudio"}),
+    awful.key({}, "F4", function () awful.spawn(" pactl set-source-mute 1 toggle") end,
+              {description = "mute mic", group = "pulseaudio"}),
+    awful.key({}, "F5", function () awful.spawn("xbacklight -dec 10") end,
+              {description = "decrease brightness", group = "launcher"}),
+    awful.key({}, "F6", function () awful.spawn("xbacklight -inc 10") end,
+              {description = "increase brightness", group = "launcher"}),
+--    awful.key({}, "F5", function () brightness_widget:dec() end, {description = "decrease brightness", group = "custom"}),
+--    awful.key({}, "F6", function () brightness_widget:inc() end, {description = "increase brightness", group = "custom"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -67,25 +85,23 @@ keys.globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
+    awful.key({ modkey, "Control" }, "r", awesome.restart,
+              { description = "reload awesome", group = "awesome" }),
+    awful.key({ modkey,           }, "f", function () awful.spawn("firefox") end,
+              {description = "open firefox", group = "launcher"}),
+    awful.key({ modkey,           }, "b", function () awful.spawn("brave") end,
+              {description = "open brave browser", group = "launcher"}),
+    awful.key({ modkey,           }, "s", function () awful.spawn("scrot -q 89") end,
+              {description = "take screenshot", group = "launcher"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "c", function () awful.util.spawn("urxvt -e sh /home/dubs/coding_env.sh") end,
-                  {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "d", function () awful.util.spawn("urxvt -e sh ranger") end,
+    awful.key({ modkey,           }, "d", function () awful.util.spawn("urxvt -e sh lf") end,
                   {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "f", function () awful.spawn("firefox") end,
               {description = "open firefox", group = "launcher"}),
-    awful.key({ modkey,           }, "F5", function () awful.spawn("brightnessctl s 10%-") end,
-              {description = "decrease brightness", group = "launcher"}),
-    awful.key({ modkey,           }, "F6", function () awful.spawn("brightnessctl s +10%") end,
-              {description = "increase brightness", group = "launcher"}),
     awful.key({ modkey,           }, "i", function () awful.spawn("xcalib -i -a") end,
               {description = "invert screen colors", group = "launcher"}),
-    awful.key({ modkey,           }, "o", function () awful.spawn("libreoffice") end,
-              {description = "open libreoffice", group = "launcher"}),
-    awful.key({ modkey,           }, "s", function () awful.spawn("scrot") end,
-              {description = "take screenshot", group = "launcher"}),
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey,           }, "o", function () awful.spawn("scrot") end,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
@@ -122,8 +138,10 @@ keys.globalkeys = gears.table.join(
     
 
     -- Prompt
-    awful.key({ modkey }, "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+--    awful.key({ modkey }, "r",     function () awful.screen.focused().mypromptbox:run() end,
+--              {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey }, "r", function () awful.spawn("rofi -show run") end,
+              {description = "Launch rofi", group = "launcher"}),
 
     awful.key({ modkey }, "l",
               function ()
