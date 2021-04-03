@@ -97,7 +97,7 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " User defined commands
-command! -nargs=1 Mgrep vimgrep "<args>" ~/memos/**/*.md
+command! -nargs=1 Mgrep vimgrep "<args>" ~/Docs/memos/**/*.md
 
 " Remaps
 :nnoremap <F9> :make<CR>
