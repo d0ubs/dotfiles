@@ -1,12 +1,9 @@
-# If not running interactively, don't do anything
-
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias ping='ping -c 4'
 alias muttg='neomutt -f +/gmail/INBOX'
 alias mutth='neomutt -f +/hotmail/Inbox'
 alias muttu='neomutt -f +/unamur/INBOX'
-alias grun='org.antlr.v4.runtime.misc.TestRig'
 
 export EDITOR="vim"
 
@@ -28,4 +25,5 @@ plugins+=(zsh-vi-mode)
 
 # Oh-my-zsh
 ZSH_THEME=kolo
+#plugins+=(git)
 source ~/.oh-my-zsh/oh-my-zsh.sh
