@@ -21,7 +21,7 @@ export PATH=/home/dubs/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib
 
 # Vim mode
 bindkey -v
-plugins+=(zsh-vi-mode)
+plugins+=(zsh-vi-mode git z)
 
 # Oh-my-zsh
 ZSH_THEME=kolo
