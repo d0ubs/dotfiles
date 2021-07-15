@@ -1,0 +1,6 @@
+
+[Default Applications]
+x-scheme-handler/mailto=brave-browser.desktop
+application/pdf=org.pwmt.zathura.desktop
+image/jpeg=feh.desktop
+image/png=feh.desktop
