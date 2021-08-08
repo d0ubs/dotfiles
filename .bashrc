@@ -26,4 +26,4 @@ fi
 
 export HISTSIZE="10000" 
 
-export PATH=/home/dubs/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/default/bin:/opt:/opt/idea-IU-182.5262.2/bin:/opt/idea-IU-182.5262.2/bin
+PATH=$PATH:/home/dubs/scripts
