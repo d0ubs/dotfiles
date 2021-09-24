@@ -17,6 +17,7 @@ alias dotfiles='/usr/bin/git --git-dir=/home/dubs/.dotfiles/ --work-tree=/home/d
 
 export EDITOR="vim"
 export VISUAL="vim"
+export PAGER="less"
 
 set -o vi
 
