@@ -95,7 +95,7 @@ keys.globalkeys = gears.table.join(
               {description = "take screenshot", group = "launcher"}),
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey,           }, "d", function () awful.util.spawn("urxvt -e sh lf") end,
+    awful.key({ modkey,           }, "d", function () awful.util.spawn(terminal.. " -e lf") end,
                   {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "f", function () awful.spawn("firefox") end,
               {description = "open firefox", group = "launcher"}),
