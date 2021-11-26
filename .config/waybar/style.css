@@ -1,0 +1,101 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Hack";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #ebdbb2;
+}
+
+tooltip {
+  background: #282828;
+  border: 1px solid #ebdbb2;
+}
+tooltip label {
+  color: #ebdbb2;
+}
+
+/*#window {
+    font-weight: bold;
+    font-family: "Hack"; 
+}
+
+#workspaces {
+    padding: 0 5px;
+}
+*/
+
+#workspaces button {
+    font-size: 22px;
+    padding: 0 5px;
+    background: transparent;
+    color: #ebdbb2;
+    margin-bottom: 0;
+}
+
+#workspaces button.focused {
+    color: #689d6a;
+    /*border-top: 2px solid #689d6a;*/
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+
+#clock {
+   /* font-weight: bold; */
+}
+
+#pulseaudio, #network, #backlight, #custom-storage, #battery, #custom-weather, #clock, #tray, #custom-power {
+    margin: 0 7px;
+}
+
+#battery icon {
+    color: red;
+}
+
+#battery.charging {
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#battery.warning:not(.charging) {
+    color: white;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network {
+}
+
+/*#network.disconnected {
+    background: #f53c3c; 
+}*/
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+}
+
+#tray {
+}
