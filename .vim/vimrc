@@ -10,6 +10,7 @@ set smartcase	" Do smart case matching i.e. ignore case if lower case
 set incsearch	" Incremental search
 set hlsearch
 :nnoremap <F10> :nohl<CR> 
+:nnoremap Y y$
 set number
 set relativenumber
 set textwidth=100
@@ -97,7 +98,7 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " User defined commands
-command! -nargs=1 Mgrep vimgrep "<args>" ~/Docs/memos/**/*.md
+command! -nargs=1 Mgrep vimgrep "<args>" ~/docs/memos/**/*.md
 
 " Remaps
 :nnoremap <F9> :make<CR>
