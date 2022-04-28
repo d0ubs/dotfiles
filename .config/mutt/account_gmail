@@ -1,6 +1,0 @@
-mailboxes +gmail/INBOX \
-          +gmail/Drafts \
-          +gmail/Sent  \
-          +gmail/Allmail  \
-
-unset record

@@ -1,7 +1,7 @@
 {
     // "layer": "top", // Waybar at top layer
     //"position": "top", // Waybar position (top|bottom|left|right)
-    "output": "eDP-1",
+    //"output": "eDP-1",
   "height": 22, // Waybar height (to be removed for auto height)
     //"width": 22, // Waybar width
       "spacing": 4, // Gaps between modules (4px)
@@ -17,7 +17,7 @@
             "format-icons": {
                 "1": "",
                 "2": "",
-                "3": " ",
+                "3": "",
                 "4": "",
                 "5": "",
                 "6": "",
@@ -97,7 +97,7 @@
         },
         "custom/weather": {
             "format": "{}",
-            "interval": 1800,
+            "interval": 450,
             "return-type": "json",
             "exec": "~/.config/waybar/modules/weather.sh"
         },

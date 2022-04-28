@@ -11,20 +11,34 @@ case $weather in
     ("Partly cloudy")
         weather=""
         ;;
-
     ("Overcast")
         weather=""
         ;;
     ("Mist")
-        weather=":"
+        weather=""
         ;;
     ("Patchy rain possible")
+        weather=""
+        ;;
+    ("Light rain shower")
         weather=""
         ;;
     ("Light rain")
         weather=""
         ;;
     ("Light drizzle")
+        weather=""
+        ;;
+    ("Light drizzle, mist")
+        weather=""
+        ;;
+    ("Mist, light drizzle, drizzle and rain")
+        weather=""
+        ;;
+    ("Light drizzle and rain")
+        weather=""
+        ;;
+    ("Light unknown precipitation, mist")
         weather=""
         ;;
     ("Clear")
