@@ -26,6 +26,8 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /home/dubs/images/lavaredo.jpg fill
+
+# eDP-1, DP-1 (thunderbolt), DP-2, HDMI-A-1
 #
 # Example configuration:
 #
@@ -216,14 +218,14 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Right workspace next
 bindsym $mod+Left workspace prev
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym F2 exec pactl -- set-sink-volume @DEFAULT_SINK@ -10%
-bindsym F3 exec pactl -- set-sink-volume @DEFAULT_SINK@ +10%
-bindsym F4 exec pactl set-source-mute 1 toggle
-bindsym F5 exec brightnessctl set 10%-
-bindsym F6 exec brightnessctl set +10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 
-bindsym $mod+Shift+b exec brave
+bindsym $mod+Shift+b exec firefox
 bindsym $mod+Shift+f exec $term -e lf
 
 #
@@ -255,6 +257,7 @@ gaps outer 0
 assign [class="Brave-browser"] 1
 for_window [class="Brave-browser"] focus
 assign [app_id="firefox"] 1
+assign [app_id="xfreerdp"] 1
 for_window [app_id="firefox"] focus
 assign [class="Alacritty" instance="lf"] 2
 assign [app_id="zathura$"] 5
@@ -271,6 +274,7 @@ exec firefox
 #exec $term -e lf 
 #
 exec wl-paste -t text --watch clipman store --no-persist
+exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable

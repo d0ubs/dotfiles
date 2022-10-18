@@ -119,6 +119,9 @@ alias mutth='neomutt -f +/hotmail/INBOX'
 alias muttu='neomutt -f +/unamur/INBOX'
 alias dotfiles='/usr/bin/git --git-dir=/home/dubs/.dotfiles/ --work-tree=/home/dubs'
 alias mbsync="mbsync -c $XDG_CONFIG_HOME/mbsync/config"
+alias dotfiles='/usr/bin/git --git-dir=/home/dubs/.dotfiles/ --work-tree=/home/dubs'
+alias 'git diff'='git --no-pager diff'
+
 export EDITOR="vim"
 
 if [ -d "$HOME/.local/bin" ]; then
@@ -142,10 +145,7 @@ fi
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
-
 complete -cf sudo
-
-alias dotfiles='/usr/bin/git --git-dir=/home/dubs/.dotfiles/ --work-tree=/home/dubs'
 
 # Vim mod
 bindkey -v
