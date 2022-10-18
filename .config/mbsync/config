@@ -1,0 +1,119 @@
+### GMAIL ###
+IMAPAccount gmail
+Host imap.gmail.com
+User dubs.david@gmail.com
+Pass cmdrclnanfqvnrib
+# Use SSL
+SSLType IMAPS
+# The following line should work. If you get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile ~/.cert/imap.gmail.com.pem
+#CertificateFile ~/.cert/Equifax_Secure_CA.pem
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+# The trailing "/" is important
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/INBOX
+SubFolders Verbatim
+
+Channel gmail-inbox
+Far :gmail-remote:"INBOX"
+Near :gmail-local:INBOX
+# Pull for backup, All (default) for synchronisation
+Sync Pull
+SyncState *
+
+Channel gmail-drafts
+Far :gmail-remote:"[Gmail]/Drafts"
+Near :gmail-local:Drafts
+Create Near
+#Expunge Both
+Sync Pull
+SyncState *
+
+Channel gmail-sent
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:Sent
+Create Near
+#Expunge Both
+Sync PullNew
+SyncState *
+
+Channel gmail-allmail
+Far :gmail-remote:"[Gmail]/All Mail"
+Near :gmail-local:Allmail
+Create Near
+#Expunge Both
+Sync Pull
+SyncState *
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-drafts
+Channel gmail-sent
+Channel gmail-allmail
+
+### UNAMUR ###
+IMAPAccount unamur
+# Address to connect to
+Host imap.unamur.be
+User dadubois
+Pass saNalige
+# Use SSL
+SSLType IMAPS
+# The following line should work. If you get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore unamur-remote
+Account unamur
+
+MaildirStore unamur-local
+Path ~/.mail/unamur/
+Inbox ~/.mail/unamur/INBOX
+SubFolders Verbatim
+
+Channel unamur
+Far :unamur-remote:
+Near :unamur-local:
+# Pull for backup, All (default) for synchronisation
+#Sync Pull
+# Automatically create missing mailboxes, both locally and on the server
+Create Near
+# Sync the movement of messages between folders and deletions, add after making sure the sync works
+#Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+### HOTMAIL ###
+IMAPAccount hotmail
+# Address to connect to
+Host outlook.office365.com
+User alias_dubs@hotmail.com
+Pass T0AGmHPaVB!
+# Use SSL
+SSLType IMAPS
+# The following line should work. If you get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore hotmail-remote
+Account hotmail
+
+MaildirStore hotmail-local
+Path ~/.mail/hotmail/
+Inbox ~/.mail/hotmail/INBOX
+SubFolders Verbatim
+
+Channel hotmail
+Far :hotmail-remote:
+Near :hotmail-local:
+# Pull for backup, All (default) for synchronisation
+#Sync Pull
+# Automatically create missing mailboxes, both locally and on the server
+Create Near
+# Sync the movement of messages between folders and deletions, add after making sure the sync works
+#Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *

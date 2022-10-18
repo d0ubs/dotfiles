@@ -43,4 +43,6 @@ awful.rules.rules = {
        properties = { screen = 1, tag = "media", switchtotag = true } },
      { rule = { instance = "mkvtoolnix-gui" },
        properties = { tag  = "media", switchtotag = true } },
+     { rule = { instance = "idea" },
+       properties = { tag  = "coding", switchtotag = true } },
 }

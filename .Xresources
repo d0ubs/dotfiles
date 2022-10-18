@@ -16,7 +16,7 @@ URxvt.keysym.M-s:       perl:keyboard-select:search
 
 Xcursor.theme: cursor-theme
 Xcursor.size: 24
-
+Xft.dpi: 96
 !------------
 !True Transparency
 !------------
