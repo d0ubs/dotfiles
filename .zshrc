@@ -150,3 +150,5 @@ complete -cf sudo
 # Vim mod
 bindkey -v
 export VI_MODE_SET_CURSOR=true
+# Avoid highlight writable dir
+export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"

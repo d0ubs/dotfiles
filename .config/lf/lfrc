@@ -111,3 +111,9 @@ map zb push :z-jump<space>-b<space>
 map zz push :z-jump<space>
 
 map F filter
+
+cmd bulkrename ${{
+    vimv $(basename -a $fx) 
+}}
+map R bulkrename
+
