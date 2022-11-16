@@ -266,8 +266,8 @@ assign [app_id="mpv$"] 7
 for_window [app_id="mpv$"] focus
 for_window [app_id="pavucontrol$"] floating enable
 for_window [app_id="imv$"] floating enable
-assign [class="mkvtoolnix-gui"] 7
-for_window [class="mkvtoolnix-gui"] focus
+assign [app_id="mkvtoolnix-gui"] 7
+for_window [app_id="mkvtoolnix-gui"] focus
 
 # Start programs at boot
 exec firefox
