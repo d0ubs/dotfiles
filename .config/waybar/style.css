@@ -1,3 +1,5 @@
+
+label { all: unset; } button { all: unset; }
 * {
     border: none;
     border-radius: 0;
@@ -30,7 +32,7 @@ tooltip label {
 */
 
 #workspaces button {
-    font-size: 22px;
+    font-size: 16px;
     padding: 0 5px;
     background: transparent;
     color: #ebdbb2;
