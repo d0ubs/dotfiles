@@ -117,3 +117,5 @@ cmd bulkrename ${{
 }}
 map R bulkrename
 
+# Remove line in 3rd column
+set cursorpreviewfmt "\033[7m"
