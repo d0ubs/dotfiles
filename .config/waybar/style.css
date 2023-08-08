@@ -3,8 +3,9 @@ label { all: unset; } button { all: unset; }
 * {
     border: none;
     border-radius: 0;
-    font-family: "Hack";
-    font-size: 14px;
+    font-family: "Font Awesome 6 Free";
+    /*font-family: monospace;*/
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -32,7 +33,7 @@ tooltip label {
 */
 
 #workspaces button {
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 5px;
     background: transparent;
     color: #ebdbb2;
