@@ -46,7 +46,7 @@ set expandtab  " Spaces instead of tabs
 set wildcharm=<Tab> 
 :nnoremap <F5> :buffers<CR>:buffer<Space>
 set hidden " Allow to change buffer w/o saving
-set switchbuf=useopen "Switch to the window w/ open buffer instead of new one
+set switchbuf=usetab "Switch to the window w/ open buffer in any tab instead of new one
 set splitright
 set splitbelow
 set termwinsize=16x0
