@@ -20,7 +20,7 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu exec sirula
+set $menu exec wofi --show=drun
 
 ### Output configuration
 #
@@ -72,7 +72,7 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
     pointer_accel 0.5
 }
 
-input "1133:49949:Logitech_USB_Keyboard" {
+input "13364:785:Keychron_Keychron_V1" {
     xkb_layout us
     xkb_variant altgr-intl
     xkb_options caps:escape
