@@ -1,6 +1,7 @@
 " Basic params
 set nocompatible
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 syntax on
 set encoding=utf-8
 set t_Co=256
@@ -109,8 +110,19 @@ autocmd Filetype c setlocal makeprg=make\ &&\ make\ clean
 autocmd Filetype markdown setlocal makeprg=pandoc\ -o\ %<.pdf\ %
 autocmd Filetype tex setlocal makeprg=latexmk\ -pdf\ -shell-escape\ %<\ % 
 autocmd Filetype java setlocal makeprg=javac\ *.java 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 
 " Skeleton files
 nnoremap ,c :-1read $HOME/.vim/skeletons/skel.c<CR>5j0i<Tab>
 nnoremap ,s :-1read $HOME/.vim/skeletons/specs.java<CR>jA<Space>
 nnoremap ,t :-1read $HOME/.vim/skeletons/skel.tex<CR>11j<Space>
+
+" Python stuff
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+
+set autoindent
+
