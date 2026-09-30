@@ -1,0 +1,92 @@
+set folder = ~/.mail
+set header_cache = ~/.cache/neomutt/headers
+# useless for local mail
+#set message_cachedir = ~/.cache/neomutt/bodies 
+set mbox_type = Maildir  # mailbox type
+set mail_check = 60
+set timeout = 15
+set delete
+set quit
+set realname = 'David Dubois'
+set sort = threads
+set strict_threads = yes
+set sort_aux = reverse-last-date-received 
+set auto_tag = yes
+set uncollapse_jump  # don't collapse on an unread message
+set smart_wrap
+set wrap = 100
+set send_charset = "utf-8"
+
+set sendmail = "/usr/bin/msmtp"
+
+#folder-hook gmail source ~/.config/neomutt/account_gmail
+#folder-hook hotmail source ~/.config/neomutt/account_hotmail
+#folder-hook unamur source ~/.config/neomutt/account_unamur
+
+set sidebar_visible = yes
+set sidebar_width   = 24
+set mail_check_stats
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+set index_format = "%4C %Z %?X?A& ? %{%a %d %b %Y} %-15.15L (%?l?%4l&%4c?) (%g) %s"
+# Format de date
+set date_format="%A %D %b %Y à %H:%M:%S (%Z)"
+
+source ~/.config/neomutt/colors-gruvbox-shuber
+source ~/.config/neomutt/colors-gruvbox-shuber-extended
+source ~/.config/neomutt/key_bindings
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 18 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes instead of blank lines like in vim
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+# Header Options -------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Compose View Options -------------------------------
+set realname = "David Dubois"          # who am i?
+set from = "dubs.david@gmail.com"    # which from?
+set envelope_from = "yes"
+set use_from = "yes"
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set fcc_attach                       # save attachments with the body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# notmuch
+set nm_default_url = "notmuch:///home/dubs/.mail"
+set virtual_spoolfile = yes          # enable virtual folders
+set spoolfile = "notmuch://?query=tag:inbox"
+virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
+virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
+virtual-mailboxes "Drafts" "notmuch://?query=tag:drafts"
+macro index \Cf "<vfolder-from-query>" "Recherche Notmuch"
+# open a different virtual folder
+bind index,pager X change-vfolder
+# read entire thread of the current message
+bind index,pager + entire-thread
+# generate virtual folder from query
+#bind index,pager \eX vfolder-from-query
+# generate virtual folder from query with time window
+bind index < vfolder-window-backward
+bind index > vfolder-window-forward
