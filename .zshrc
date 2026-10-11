@@ -2,13 +2,15 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+#export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="cypher"
+# 
+#ZSH_THEME="cypher"
+#
 # ZSH_THEME="kolo" w/ git but slow
 
 # Set list of themes to pick from when loading at random
@@ -73,8 +75,8 @@ ZSH_THEME="cypher"
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git)
 #
-plugins=(zsh-vi-mode)
-source $ZSH/oh-my-zsh.sh
+#plugins=(zsh-vi-mode)
+#source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -126,8 +128,9 @@ export EDITOR="vim"
 if [ -d "$HOME/.local/bin" ]; then
         PATH="$HOME/.local/bin:$PATH"
 fi
-export HISTSIZE="10000" 
-export HISTFILE="$HOME/.zsh_history"
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE="10000" 
+SAVEHIST="10000" 
 
 PATH=$PATH:/home/dubs/scripts
 
@@ -136,18 +139,23 @@ export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export NMBGIT="$XDG_DATA_HOME/notmuch/nmbug"
 
 # GPG-Agent
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
-# Ask the PIN on correct terminal
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
-
-complete -cf sudo
+#unset SSH_AGENT_PID
+#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#fi
+## Ask the PIN on correct terminal
+#export GPG_TTY=$(tty)
+#gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # Vim mod
 bindkey -v
 export VI_MODE_SET_CURSOR=true
 # Avoid highlight writable dir
 export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
+
+PS1='%m: %1d$ '
+
+# wayland mode for QT
+export QT_QPA_PLATFORM=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+export MOZ_ENABLE_WAYLAND=1

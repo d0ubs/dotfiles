@@ -102,3 +102,23 @@ tooltip label {
 
 #tray {
 }
+
+#power-profiles-daemon {
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+    font-weight: 900;
+    padding: 0 10px;
+    background-color: transparent; /* Supprime le rectangle de fond */
+}
+
+/* Colore uniquement le glyphe selon le mode actif */
+#power-profiles-daemon.performance {
+    color: #f38ba8; /* Rouge / Énergie */
+}
+
+#power-profiles-daemon.balanced {
+    color: #a6e3a1; /* Vert clair / Équilibré */
+}
+
+#power-profiles-daemon.power-saver {
+    color: #94e2d5; /* Vert éco / Économie */
+}
