@@ -1,8 +1,42 @@
+# Posteo
+# --- IMAP SERVER CONNECTION ---
+IMAPAccount posteo
+Host posteo.de
+User dubs@posteo.net
+# Choose ONE of the password options below:
+# Option A: Plain text (not recommended)
+PassCmd "pass email/posteo-mbsync"
+# Option B: Securely fetched from a command line tool (recommended)
+# PassCmd "pass email/posteo" or "gpg -q -d ~/.password.gpg"
+TLSType IMAPS
+
+# --- REMOTE STORE (Posteo Server) ---
+IMAPStore posteo-remote
+Account posteo
+
+# --- LOCAL STORE (Your Machine) ---
+MaildirStore posteo-local
+SubFolders Verbatim
+Path ~/.mail/posteo/
+Inbox ~/.mail/posteo/INBOX
+# The trailing slash ensures it treats the folder format correctly
+
+# --- CHANNELS (Connecting Remote and Local) ---
+Channel posteo
+Far :posteo-remote:
+Near :posteo-local:
+# Synchronize all mailboxes
+Patterns *
+# Propagate additions, deletions, and flag changes bidirectionally
+Create Near
+Expunge Both
+SyncState *
+
 ### GMAIL ###
 IMAPAccount gmail
 Host imap.gmail.com
 User dubs.david@gmail.com
-Pass cmdrclnanfqvnrib
+PassCmd "pass email/gmail-mbsync"
 # Use SSL
 TLSType IMAPS
 # The following line should work. If you get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
@@ -61,7 +95,7 @@ IMAPAccount hotmail
 # Address to connect to
 Host outlook.office365.com
 User alias_dubs@hotmail.com
-Pass T0AGmHPaVB!
+PassCmd "pass email/hotmail-mbsync"
 # Use SSL
 TLSType IMAPS
 # The following line should work. If you get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.

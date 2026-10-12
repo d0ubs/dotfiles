@@ -26,6 +26,12 @@ set sendmail = "/usr/bin/msmtp"
 set sidebar_visible = yes
 set sidebar_width   = 24
 set mail_check_stats
+# ADD THIS: Prevents sidebar from locking up the UI on big mailboxes
+set mail_check_stats_interval = 300
+
+set read_inc = 1000
+set write_inc = 1000
+
 set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
@@ -77,9 +83,14 @@ set forward_quote                    # include message in forwards
 set nm_default_url = "notmuch:///home/dubs/.mail"
 set virtual_spoolfile = yes          # enable virtual folders
 set spoolfile = "notmuch://?query=tag:inbox"
+# FIX: Limit default spoolfile view to recent mail for instant loading
+#set spoolfile = "notmuch://?query=tag:inbox and date:30d..now"
+#virtual-mailboxes "Inbox (Recent)" "notmuch://?query=tag:inbox and date:30d..now"
+
 virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
 virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
 virtual-mailboxes "Drafts" "notmuch://?query=tag:drafts"
+set nm_query_type = "messages"
 macro index \Cf "<vfolder-from-query>" "Recherche Notmuch"
 # open a different virtual folder
 bind index,pager X change-vfolder

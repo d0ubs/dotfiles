@@ -1,7 +1,9 @@
 # .notmuch-config - Configuration file for the notmuch mail system
 #
 # For more information about notmuch, see https://notmuchmail.org
+#
 # Database configuration
+[database]
 #
 # Supported values are 'mail_root' and 'path'. The recommended option
 # is to set 'mail_root' to the directory where your mail currently exists
@@ -11,9 +13,13 @@
 # If only 'path' is set, this directory is for 'mail_root' and for
 # the database location (in a subdirectory called ".notmuch").
 #
-[database]
 path=/home/dubs/.mail
+
 # User configuration
+[user]
+name=David Dubois
+primary_email=david.dubois@posteo.net
+other_email=dubs@posteo.net, david.dubois007@posteo.net;dubs.david@gmail.com;alias_dubs@hotmail.com
 #
 # Here is where you can let notmuch know how you would like to be
 # addressed. Valid settings are
@@ -28,11 +34,8 @@ path=/home/dubs/.mail
 # recipient list of replies, and will set the From address based on the
 # address to which the original email was addressed.
 #
-[user]
-name=David Dubois
-primary_email=dubs.david@gmail.com
-other_email=alias_dubs@hotmail.com
 # Configuration for "notmuch new"
+[new]
 #
 # The following options are supported here:
 #
@@ -46,8 +49,8 @@ other_email=alias_dubs@hotmail.com
 #		names will be ignored, independent of its depth/location
 #		in the mail store.
 #
-[new]
 # Search configuration
+[search]
 #
 # The following option is supported here:
 #
@@ -56,8 +59,8 @@ other_email=alias_dubs@hotmail.com
 #		search results by default.  Using an excluded tag in a
 #		query will override that exclusion.
 #
-[search]
 # Maildir compatibility configuration
+[maildir]
 #
 # The following option is supported here:
 #
@@ -78,4 +81,3 @@ other_email=alias_dubs@hotmail.com
 #	and update tags, while the "notmuch tag" and "notmuch restore"
 #	commands will notice tag changes and update flags in filenames
 #
-[maildir]
